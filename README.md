@@ -1,0 +1,2 @@
+# FakeChatGPTApp
+ChatGPTに似せたUIを持ち、予め定義した会話をChatGPT風に表示するWebアプリケーションです。
