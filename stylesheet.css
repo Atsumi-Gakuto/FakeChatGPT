@@ -7,6 +7,11 @@ p {
     margin: 0;
 }
 
+/* 汎用クラス */
+.hidden {
+    display: none !important;
+}
+
 /* 特定の要素 */
 #side_bar {
     display: flex;
@@ -109,8 +114,10 @@ p {
 }
 #input_box > p {
     width: 750px;
-    color: #8e8ea0;
     line-height: 32px;
+}
+.empty_text {
+    color: #8e8ea0;
 }
 #input_box > svg {
     width: 16px;
