@@ -95,3 +95,32 @@ p {
     border-top: solid 1px rgba(0, 0, 0, 10%);
     border-bottom: solid 1px rgba(0, 0, 0, 10%);
 }
+#input_box {
+    position: fixed;
+    display: flex;
+    padding: 16px;
+    bottom: 20px;
+    left: calc(50% + 130px);
+    transform: translateX(-50%);
+    background-color: white;
+    border: solid 1px rgba(0, 0, 0, 10%);
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 10%);
+}
+#input_box > p {
+    width: 750px;
+    color: #8e8ea0;
+    line-height: 32px;
+}
+#input_box > svg {
+    width: 16px;
+    height: 16px;
+    padding: 8px;
+    fill: #dedee5;
+    border-radius: 4px;
+    transition: 0.25s;
+}
+.can_send {
+    fill: white !important;
+    background-color: #19c37d;
+}
