@@ -1,7 +1,7 @@
 /* 全体の要素 */
 body {
+    display: flex;
     margin: 0;
-    background-color: #f7f7f9;
 }
 p {
     margin: 0;
@@ -43,10 +43,10 @@ p {
     margin-right: 12px;
 }
 #chat_list {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    flex-grow: 1;
     overflow: hidden;
 }
 .side_bar_list {
@@ -66,4 +66,32 @@ p {
     width: 24px;
     height: 24px;
     border-radius: 2px;
+}
+#chat_area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: auto;
+}
+#chat_area * {
+    font-size: xx-large;
+}
+.user_chat, .gpt_chat {
+    display: flex;
+    width: 700px;
+    padding: 24px calc((100vw - 260px - 700px) / 2);
+}
+.user_chat > img, .gpt_chat > img {
+    width: 2ex;
+    height: 2ex;
+    border-radius: 2px;
+}
+.user_chat > p, .gpt_chat > p {
+    margin-left: 24px;
+}
+.gpt_chat {
+    background-color: #f7f7f9;
+    border-top: solid 1px rgba(0, 0, 0, 10%);
+    border-bottom: solid 1px rgba(0, 0, 0, 10%);
 }
