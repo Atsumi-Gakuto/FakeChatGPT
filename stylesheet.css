@@ -100,6 +100,13 @@ p {
     border-top: solid 1px rgba(0, 0, 0, 10%);
     border-bottom: solid 1px rgba(0, 0, 0, 10%);
 }
+.cursor {
+    display: inline-block;
+    width: 1.5ex;
+    height: 2ex;
+    background: black;
+    animation: cursor_blink 1s steps(1) infinite;
+}
 #input_box {
     position: fixed;
     display: flex;
@@ -130,4 +137,13 @@ p {
 .can_send {
     fill: white !important;
     background-color: #19c37d;
+}
+
+@keyframes cursor_blink {
+    0% {
+        background-color: black;
+    }
+    50% {
+        background-color: #f7f7f9;
+    }
 }

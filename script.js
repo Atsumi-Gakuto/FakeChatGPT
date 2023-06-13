@@ -10,12 +10,17 @@ import { chatData } from "./chat_data.js";
  */
 let chatSequence = 0;
 
+/**
+ * ChatGPTが回答中かどうか
+ * @type {boolean}
+ */
+let isAnswering = false;
 
 //メッセージ入力テキストをクリックした時のイベント
 const messageInputElement = document.querySelector("#input_box > p");
 const sendButtonElement = document.querySelector("#input_box > svg");
 messageInputElement.addEventListener("click", () => {
-    if(messageInputElement.innerText == "Send a message.") {
+    if(!isAnswering) {
         messageInputElement.innerText = chatData[chatSequence].question;
         messageInputElement.classList.remove("empty_text");
         sendButtonElement.classList.add("can_send");
@@ -36,6 +41,23 @@ sendButtonElement.addEventListener("click", () => {
         const userChatTextElement = document.createElement("p");
         userChatTextElement.innerText = chatData[chatSequence].question;
         userChatElement.appendChild(userChatTextElement);
-        document.getElementById("chat_area").appendChild(userChatElement);
+        const chatAreaElement = document.getElementById("chat_area");
+        chatAreaElement.appendChild(userChatElement);
+        isAnswering = true;
+        setTimeout(() => {
+            const gptChatElement = document.createElement("div");
+            gptChatElement.classList.add("gpt_chat");
+            const gptImageElement = document.createElement("img");
+            gptImageElement.src = "images/chat_gpt.svg";
+            gptChatElement.appendChild(gptImageElement);
+            const gptChatTextElement = document.createElement("p");
+            const gptChatBodyElement = document.createElement("span");
+            gptChatTextElement.appendChild(gptChatBodyElement);
+            const cursorElement = document.createElement("span");
+            cursorElement.classList.add("cursor");
+            gptChatTextElement.appendChild(cursorElement);
+            gptChatElement.appendChild(gptChatTextElement);
+            chatAreaElement.appendChild(gptChatElement);
+        }, 1000);
     }
 });
