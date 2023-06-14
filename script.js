@@ -2,6 +2,17 @@ import { chatData } from "./chat_data.js";
 
 // *** 設定フィールド　開始 ***
 
+/**
+ * GPTの応答が開始されるまでの時間（秒）
+ * @type {number}
+ */
+const gptChatStartTime = 1;
+
+/**
+ * GPTの応答で文字が入力される間隔（秒）
+ */
+const gptChatBetweenTime = 0.05;
+
 // *** 設定フィールド　終了 ***
 
 /**
@@ -20,7 +31,7 @@ let isAnswering = false;
 const messageInputElement = document.querySelector("#input_box > p");
 const sendButtonElement = document.querySelector("#input_box > svg");
 messageInputElement.addEventListener("click", () => {
-    if(!isAnswering) {
+    if(!isAnswering && chatSequence < chatData.length) {
         messageInputElement.innerText = chatData[chatSequence].question;
         messageInputElement.classList.remove("empty_text");
         sendButtonElement.classList.add("can_send");
@@ -58,6 +69,18 @@ sendButtonElement.addEventListener("click", () => {
             gptChatTextElement.appendChild(cursorElement);
             gptChatElement.appendChild(gptChatTextElement);
             chatAreaElement.appendChild(gptChatElement);
+            setTimeout(() => {
+                let answerChar = 0; //GPTの回答で出力した文字のインデックス
+                const addCharHandler = setInterval(() => {
+                    gptChatBodyElement.innerText += chatData[chatSequence].answer[answerChar++];
+                    if(answerChar == chatData[chatSequence].answer.length) {
+                        clearInterval(addCharHandler);
+                        cursorElement.remove();
+                        chatSequence++;
+                        isAnswering = false;
+                    }
+                }, gptChatBetweenTime * 1000);
+            }, gptChatStartTime * 1000);
         }, 1000);
     }
 });
