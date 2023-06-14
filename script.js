@@ -61,21 +61,38 @@ sendButtonElement.addEventListener("click", () => {
             const gptImageElement = document.createElement("img");
             gptImageElement.src = "images/chat_gpt.svg";
             gptChatElement.appendChild(gptImageElement);
+            const gptChatTextImageElement = document.createElement("div");
+            gptChatTextImageElement.classList.add("gpt_chat_text_image");
             const gptChatTextElement = document.createElement("p");
             const gptChatBodyElement = document.createElement("span");
             gptChatTextElement.appendChild(gptChatBodyElement);
             const cursorElement = document.createElement("span");
             cursorElement.classList.add("cursor");
             gptChatTextElement.appendChild(cursorElement);
-            gptChatElement.appendChild(gptChatTextElement);
+            gptChatTextImageElement.appendChild(gptChatTextElement);
+            gptChatElement.appendChild(gptChatTextImageElement);
             chatAreaElement.appendChild(gptChatElement);
             setTimeout(() => {
                 let answerChar = 0; //GPTの回答で出力した文字のインデックス
-                const addCharHandler = setInterval(() => {
+                const addCharHandler = setInterval(async () => {
                     gptChatBodyElement.innerText += chatData[chatSequence].answer[answerChar++];
                     if(answerChar == chatData[chatSequence].answer.length) {
                         clearInterval(addCharHandler);
                         cursorElement.remove();
+                        if(chatData[chatSequence].images.length > 0) {
+                            const imageAreaElement = document.createElement("div");
+                            imageAreaElement.classList.add("image_area");
+                            const imageInnerElement = document.createElement("div");
+                            imageInnerElement.classList.add("image_area_inner");
+                            await new Promise((resolve) => setTimeout(resolve, 500));
+                            chatData[chatSequence].images.forEach((imageSrc) => {
+                                const imageElement = document.createElement("img");
+                                imageElement.src = imageSrc;
+                                imageInnerElement.appendChild(imageElement);
+                            });
+                            imageAreaElement.appendChild(imageInnerElement);
+                            gptChatTextImageElement.appendChild(imageAreaElement);
+                        }
                         chatSequence++;
                         isAnswering = false;
                     }

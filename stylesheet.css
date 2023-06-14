@@ -92,7 +92,7 @@ p {
     height: 2ex;
     border-radius: 2px;
 }
-.user_chat > p, .gpt_chat > p {
+.user_chat > p, .gpt_chat_text_image {
     margin-left: 24px;
 }
 .gpt_chat {
@@ -100,12 +100,30 @@ p {
     border-top: solid 1px rgba(0, 0, 0, 10%);
     border-bottom: solid 1px rgba(0, 0, 0, 10%);
 }
+.gpt_chat_text_image {
+    display: flex;
+    flex-direction: column;
+}
 .cursor {
     display: inline-block;
     width: 1.5ex;
     height: 2ex;
     background: black;
     animation: cursor_blink 1s steps(1) infinite;
+}
+.image_area {
+    display: flex;
+    justify-content: center;
+    max-width: calc(676px - 2ex);
+}
+.image_area_inner {
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+}
+.image_area_inner > img {
+    height: 300px;
+    margin: 0 6px;
 }
 #input_box {
     position: fixed;
