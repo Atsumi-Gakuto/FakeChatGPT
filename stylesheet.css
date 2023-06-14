@@ -79,6 +79,12 @@ p {
     height: 100vh;
     overflow: auto;
 }
+#chat_area > div {
+    flex-shrink: 0;
+}
+#chat_spacer {
+    height: 80px;
+}
 #chat_area * {
     font-size: xx-large;
 }

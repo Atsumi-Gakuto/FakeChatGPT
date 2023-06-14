@@ -53,7 +53,7 @@ sendButtonElement.addEventListener("click", () => {
         userChatTextElement.innerText = chatData[chatSequence].question;
         userChatElement.appendChild(userChatTextElement);
         const chatAreaElement = document.getElementById("chat_area");
-        chatAreaElement.appendChild(userChatElement);
+        chatAreaElement.lastElementChild.before(userChatElement);
         isAnswering = true;
         setTimeout(() => {
             const gptChatElement = document.createElement("div");
@@ -71,7 +71,7 @@ sendButtonElement.addEventListener("click", () => {
             gptChatTextElement.appendChild(cursorElement);
             gptChatTextImageElement.appendChild(gptChatTextElement);
             gptChatElement.appendChild(gptChatTextImageElement);
-            chatAreaElement.appendChild(gptChatElement);
+            chatAreaElement.lastElementChild.before(gptChatElement);
             setTimeout(() => {
                 let answerChar = 0; //GPTの回答で出力した文字のインデックス
                 const addCharHandler = setInterval(async () => {
