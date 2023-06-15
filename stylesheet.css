@@ -99,6 +99,7 @@ p {
     border-radius: 2px;
 }
 .user_chat > p, .gpt_chat_text_image {
+    width: 100%;
     margin-left: 24px;
 }
 .gpt_chat {
