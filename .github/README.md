@@ -1,4 +1,4 @@
-# FakeChatGPTApp
+# FakeChatGPT
 研究室の自己紹介でのパフォーマンスを目的に作られた、ChatGPTに似せたUIを持ち、**予め定義した会話**をChatGPT風に表示するWebアプリケーションです。尚、聴衆が見やすいように会話画面は大きめに作られています。
 
 ![メイン画面](./README_images/メイン.gif)
