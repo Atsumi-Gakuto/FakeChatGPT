@@ -1,0 +1,14 @@
+name: Request review
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - ready_for_review
+
+jobs:
+  call_workflow:
+    name: Call workflow
+    permissions:
+      pull-requests: write
+    uses: Atsumi-Gakuto/MyAutoRequestReview/.github/workflows/request_review.yml@main
